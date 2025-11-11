@@ -55,3 +55,48 @@ end
 
 EventBus --> Kafka
 Security --> Redis
+
+
+
+
+
+#Preference Service Diagram
+
+flowchart TD
+    A[Client / Frontend] -->|HTTP Request| B[PreferenceController]
+
+    B -->|Send Command / Get Query| C[PreferenceCommandService - CircuitBreaker, Retry, Fallback]
+    B -->|Get Query| D[PreferenceQueryService - CircuitBreaker, Retry, Fallback]
+
+    C -->|Publish Event| E[EventPublisher - Kafka Producer - CircuitBreaker, Retry, Fallback]
+    E -->|Async Event| F[Kafka Topic: user-preferences-events]
+    F -->|Consume Event| G[EventConsumer - Projector - CircuitBreaker, Retry, Fallback]
+
+    G -->|Update Read DB| H[Postgres: user_preferences_read]
+    G -->|Update Cache| I[Redis: user:preferences]
+
+    D -->|Read Cache| I
+    D -->|Fallback Read| H
+
+    %% Highlight resilience-enabled services
+    classDef resilience fill:#ffeb99,stroke:#333,stroke-width:1px;
+    class C,D,E,G resilience;
+
+
+
+# User sesssion service diagram
+flowchart TD
+    A[Client / Frontend] -->|HTTP POST /login| B[LoginController]
+
+    B -->|Authenticate User| C[UserSessionService - CircuitBreaker, Retry, Fallback]
+    C -->|Validate Credentials| D[Postgres: users table]
+    C -->|Generate JWT Token| E[Redis: session cache]
+
+    B -->|Logout| F[LogoutService - CircuitBreaker, Retry, Fallback]
+    F -->|Invalidate JWT Token| E[Redis: session cache]
+
+    %% Highlight resilience-enabled services
+    classDef resilience fill:#ffeb99,stroke:#333,stroke-width:1px;
+    class C,F resilience;
+
+
