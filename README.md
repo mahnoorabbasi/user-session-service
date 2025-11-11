@@ -56,11 +56,11 @@ end
 EventBus --> Kafka
 Security --> Redis
 
+```
 
 
 
-
-#Preference Service Diagram
+##Preference Service Diagram
 ```mermaid
 flowchart TD
     A[Client / Frontend] -->|HTTP Request| B[PreferenceController]
@@ -82,9 +82,9 @@ flowchart TD
     classDef resilience fill:#ffeb99,stroke:#333,stroke-width:1px;
     class C,D,E,G resilience;
 
+```
 
-
-# User sesssion service diagram
+## User sesssion service diagram
 ```mermaid
 flowchart TD
     A[Client / Frontend] -->|HTTP POST /login| B[LoginController]
@@ -99,5 +99,5 @@ flowchart TD
     %% Highlight resilience-enabled services
     classDef resilience fill:#ffeb99,stroke:#333,stroke-width:1px;
     class C,F resilience;
-
+```
 
