@@ -61,7 +61,7 @@ Security --> Redis
 
 
 #Preference Service Diagram
-
+```mermaid
 flowchart TD
     A[Client / Frontend] -->|HTTP Request| B[PreferenceController]
 
@@ -85,6 +85,7 @@ flowchart TD
 
 
 # User sesssion service diagram
+```mermaid
 flowchart TD
     A[Client / Frontend] -->|HTTP POST /login| B[LoginController]
 
