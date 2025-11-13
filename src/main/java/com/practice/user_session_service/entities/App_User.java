@@ -3,7 +3,6 @@ package com.practice.user_session_service.entities;
 
 
 
-
 /*
 * CREATE TABLE IF NOT EXISTS app_user (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

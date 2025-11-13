@@ -1,0 +1,2 @@
+Alter table user_preferences_read
+rename to user_preference

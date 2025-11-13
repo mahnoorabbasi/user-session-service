@@ -1,0 +1,11 @@
+
+docker exec -it kafka bash
+
+
+# Commands topics
+kafka-topics --create --topic user-sessions-commands --bootstrap-server kafka:9092 --partitions 3 --replication-factor 1
+kafka-topics --create --topic user-preferences-commands --bootstrap-server kafka:9092 --partitions 3 --replication-factor 1
+
+# Events topics
+kafka-topics --create --topic user-sessions-events --bootstrap-server kafka:9092 --partitions 3 --replication-factor 1
+kafka-topics --create --topic user-preferences-events --bootstrap-server kafka:9092 --partitions 3 --replication-factor 1

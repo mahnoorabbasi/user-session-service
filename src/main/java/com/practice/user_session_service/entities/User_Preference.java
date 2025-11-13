@@ -1,6 +1,7 @@
 package com.practice.user_session_service.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -15,14 +16,14 @@ import java.util.UUID;
 *
 * */
 @Entity
-@Table(name = "user_preferences_read")
+@Table(name = "user_preference")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @Builder
 
-public class User_Preferences_Read {
+public class User_Preference {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
