@@ -25,7 +25,19 @@ public class PreferenceCommandService {
                 AggregateType.UserPreference.toString(),
                 CommandType.UPDATE_PREFERENCE.toString(),
                 objectMapper.writeValueAsString(userPreference));
-        kafkaTemplate.send(prefCommandTopic, eventObject);
+        kafkaTemplate.send(prefCommandTopic, objectMapper.writeValueAsString(eventObject));
+        return ResponseObject.builder()
+                .status(HttpStatus.OK)
+                .msg("Command sent")
+                .build();
+
+    }
+    public ResponseObject createPreference(UserPreference userPreference) throws JsonProcessingException {
+        EventObject eventObject=EventObject.createCommand(userPreference.getUser_id(),
+                AggregateType.UserPreference.toString(),
+                CommandType.CREATE_PREFERENCE.toString(),
+                objectMapper.writeValueAsString(userPreference));
+        kafkaTemplate.send(prefCommandTopic, objectMapper.writeValueAsString(eventObject));
         return ResponseObject.builder()
                 .status(HttpStatus.OK)
                 .msg("Command sent")

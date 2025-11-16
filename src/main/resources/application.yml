@@ -16,6 +16,10 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+  security:
+    user:
+      name: mahnoor
+      password: pass123
 
 
 logging:

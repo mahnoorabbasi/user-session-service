@@ -1,15 +1,19 @@
 package com.practice.user_session_service.dtos;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
+import lombok.*;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.UUID;
 
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-
-public class EventObject {
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+public class EventObject implements Serializable {
 
     // Unique ID for this message instance (useful for tracing)
     private UUID messageId;
