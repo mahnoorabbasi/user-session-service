@@ -23,7 +23,7 @@ import java.util.UUID;
 @Getter
 @Builder
 
-public class User_Preference {
+public class UserPreference {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

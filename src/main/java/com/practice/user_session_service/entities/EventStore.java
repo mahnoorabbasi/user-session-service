@@ -29,7 +29,7 @@ import java.util.UUID;
 @Setter
 @Getter
 @Builder
-public class Event_Store {
+public class EventStore {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
