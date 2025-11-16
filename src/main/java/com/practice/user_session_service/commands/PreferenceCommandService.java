@@ -6,6 +6,7 @@ import com.practice.user_session_service.dtos.EventObject;
 import com.practice.user_session_service.dtos.ResponseObject;
 import com.practice.user_session_service.entities.UserPreference;
 import com.practice.user_session_service.utils.AggregateType;
+import com.practice.user_session_service.utils.KafkaTopics;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -13,11 +14,10 @@ import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
 @Service
-public class PreferenceCommandService {
+public class PreferenceCommandService implements KafkaTopics {
 
     private final KafkaTemplate kafkaTemplate;
     private final ObjectMapper objectMapper;
-    private final String prefCommandTopic="user-preferences-commands";
 
 
     public ResponseObject updatePreference(UserPreference userPreference) throws JsonProcessingException {

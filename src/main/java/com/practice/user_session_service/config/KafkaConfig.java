@@ -10,6 +10,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.listener.ContainerProperties;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,10 +44,12 @@ public class KafkaConfig {
         factory.setConsumerFactory(new DefaultKafkaConsumerFactory(Map.of(
                 "bootstrap.servers","localhost:9093",
                 "group.id", "user-preferences",
+                "auto-offset-reset-config", "earliest",
                 "key.deserializer","org.apache.kafka.common.serialization.StringDeserializer",
                 "value.deserializer","org.apache.kafka.common.serialization.StringDeserializer"
 
         )));
+        factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
         return factory;
     }
 
