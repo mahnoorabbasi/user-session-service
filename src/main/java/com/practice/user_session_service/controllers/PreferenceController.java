@@ -20,9 +20,16 @@ public class PreferenceController {
 
 
 
-    @PostMapping
+    @PostMapping("/update")
     public ResponseEntity updatePreference(@RequestBody  UserPreference userPreference) throws JsonProcessingException {
         ResponseObject responseObject=preferenceCommandService.updatePreference(userPreference);
+
+        return new ResponseEntity<>(responseObject.getMsg(), responseObject.getStatus());
+
+    }
+    @PostMapping("/create")
+    public ResponseEntity createPreference(@RequestBody  UserPreference userPreference) throws JsonProcessingException {
+        ResponseObject responseObject=preferenceCommandService.createPreference(userPreference);
 
         return new ResponseEntity<>(responseObject.getMsg(), responseObject.getStatus());
 
